@@ -39,9 +39,8 @@ const Input: FC<InputProps> = ({ setMessages, chatState, setChatState }) => {
           const reader = response.body!.getReader();
           return new ReadableStream({
             start(controller) {
-              return pump();
-              function pump(): unknown {
-                return reader.read().then(({ done, value }) => {
+              function push() {
+                reader.read().then(({ done, value }) => {
                   const chunkSize = 32;
                   if (value) {
                     const response = new Uint8Array(value);
@@ -50,8 +49,6 @@ const Input: FC<InputProps> = ({ setMessages, chatState, setChatState }) => {
                       const result = JSON.parse(
                         new TextDecoder().decode(chunk),
                       );
-                      console.log(result);
-
                       if (result.status === "content") {
                         setMessages((prev) =>
                           prev.map((element, index) =>
@@ -76,16 +73,16 @@ const Input: FC<InputProps> = ({ setMessages, chatState, setChatState }) => {
                       setChatState(CHAT_STATE.DEFAULT);
                     }
                   }
-
                   if (done) {
                     controller.close();
                     return;
                   }
 
                   controller.enqueue(value);
-                  return pump();
+                  push();
                 });
               }
+              push();
             },
           });
         });

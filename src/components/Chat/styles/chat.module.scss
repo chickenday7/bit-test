@@ -1,0 +1,16 @@
+.wrapper {
+  height: 623px;
+  min-width: 280px;
+  max-width: 100%;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 36px 16px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  overflow-y: scroll;
+
+  @media (max-width: 600px) {
+    max-height: min(50vh, 50vh);
+  }
+}

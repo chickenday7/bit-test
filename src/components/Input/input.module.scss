@@ -1,0 +1,45 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: white;
+  margin-top: 38px;
+  border-radius: 16px;
+  padding: 16px 16px 16px 28px;
+  column-gap: 12px;
+}
+
+.input {
+  flex-grow: 1;
+  -webkit-appearance: none;
+  outline: none;
+  background-color: inherit;
+  border: none;
+  color: black;
+  font-size: 20px;
+}
+
+.submit {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #007afe;
+  background-image: url("@assets/send.svg");
+  background-repeat: no-repeat;
+  background-position: left 9px top 50%;
+  background-size: 26px;
+  cursor: pointer;
+  color: inherit;
+  border: none;
+  transition: 0.3s;
+  &:hover {
+    opacity: 0.8;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.submit_disabled {
+  background-color: gray;
+}
